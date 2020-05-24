@@ -1,0 +1,1 @@
+dao中存的是Mybatis的Dao层接口文件  《——对应——》 source/mapping中的xml
