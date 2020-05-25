@@ -1,5 +1,6 @@
 package com.waectr.wetec.service;
 
+import com.github.pagehelper.Page;
 import com.waectr.wetec.error.OptionException;
 import com.waectr.wetec.service.model.UserModel;
 
@@ -17,4 +18,6 @@ public interface UserService {
 
     //改变用户状态列，指定用户指定数字
     void changeUserStatusByemail(String email,int changenum);
+
+    Page<UserModel> getUserList(Integer pageNum, Integer pageSize);
 }

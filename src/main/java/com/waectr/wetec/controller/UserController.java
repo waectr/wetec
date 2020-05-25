@@ -2,8 +2,11 @@ package com.waectr.wetec.controller;
 
 
 import com.alibaba.druid.util.StringUtils;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.waectr.wetec.controller.viewobject.LoginUserInfom;
 import com.waectr.wetec.controller.viewobject.UserVO;
+import com.waectr.wetec.dao.UserDOMapper;
 import com.waectr.wetec.error.EmOptionException;
 import com.waectr.wetec.error.OptionException;
 import com.waectr.wetec.response.CommonReturnType;
@@ -32,6 +35,7 @@ public class UserController extends BaseController{
 
     @Autowired
     UserService userService;
+
     //用户登录
 
     /*
@@ -175,5 +179,18 @@ public class UserController extends BaseController{
         userService.changeUserStatusByemail(email,3);
         //返回
         return CommonReturnType.create(null);
+    }
+
+    /*
+        分页返回前端用户列表
+        前端：pagenum pagesize总页数
+
+     */
+    @RequestMapping(value = "/getuserlist",method = {RequestMethod.GET}) //定义对应的请求方法
+    @ResponseBody
+    public CommonReturnType getUserList(@RequestParam(value = "pagenum") Integer pagenum,
+                                        @RequestParam(value = "pagesize") Integer pagesize){
+        Page<UserModel> userList = userService.getUserList(pagenum, pagesize);
+        return CommonReturnType.create(userList);
     }
 }

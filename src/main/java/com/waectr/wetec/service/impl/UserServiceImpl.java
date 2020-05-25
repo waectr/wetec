@@ -1,6 +1,9 @@
 package com.waectr.wetec.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.waectr.wetec.controller.viewobject.UserVO;
 import com.waectr.wetec.dao.PasswordDOMapper;
 import com.waectr.wetec.dao.UserDOMapper;
 import com.waectr.wetec.dataobject.PasswordDO;
@@ -13,6 +16,8 @@ import com.waectr.wetec.service.model.UserModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService
@@ -101,10 +106,20 @@ public class UserServiceImpl implements UserService
         if(userModel==null){
             return null;
         }
-
         UserDO userDO=new UserDO();
         BeanUtils.copyProperties(userModel,userDO);
         return userDO;
+    }
+
+    public Page<UserModel> getUserList(Integer pageNum, Integer pageSize){
+        PageHelper.startPage(pageNum, pageSize);
+        Page<UserDO> userList= userDOMapper.getUserList();
+        Page<UserModel> userModelList=new Page<>();
+        for(UserDO u:userList){
+            UserModel um=convertFromDataObject(u,null);
+            userModelList.add(um);
+        }
+        return userModelList;
     }
 
 
