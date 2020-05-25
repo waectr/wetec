@@ -48,7 +48,7 @@
                <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!--<table tableName="t_user" domainObjectName="UserDO" enableCountByExample="false" enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table tableName="t_tag" domainObjectName="TagDO" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="t_user" domainObjectName="UserDO" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 

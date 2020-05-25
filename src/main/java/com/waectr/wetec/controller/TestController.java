@@ -15,6 +15,7 @@ public class TestController {
     @RequestMapping(value = "/test",method = {RequestMethod.GET}) //定义对应的请求方法
     @ResponseBody
     public CommonReturnType Test(){
-        return CommonReturnType.create("this is a test controller");
+        String s = new String("this is a test controller");
+        return CommonReturnType.create(s);
     }
 }
