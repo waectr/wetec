@@ -25,5 +25,6 @@ public class MailService {
         message.setSubject(title);
         message.setText(content);
         mailSender.send(message);
+        System.out.println("邮件已发送");
     }
 }

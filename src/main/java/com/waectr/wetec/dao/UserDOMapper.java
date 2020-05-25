@@ -58,4 +58,4 @@ public interface UserDOMapper {
     int updateStatusByEmail(String email,Integer status);
 
     Page<UserDO> getUserList();
-}
+        }

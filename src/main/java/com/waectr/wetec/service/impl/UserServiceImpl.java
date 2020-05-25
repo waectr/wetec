@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService
 
         //进行密码比对
         if(!StringUtils.equals(password,userModel.getUserPassword())){
-            throw new OptionException(EmOptionException.PARAMETER_VALIDATION_ERROR);
+            throw new OptionException(EmOptionException.PARAMETER_VALIDATION_ERROR,"密码错误");
         }
         return userModel;
     }
