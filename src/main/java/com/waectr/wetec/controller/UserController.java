@@ -14,6 +14,7 @@ import com.waectr.wetec.service.UserService;
 import com.waectr.wetec.service.model.UserModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Encoder;
@@ -36,6 +37,9 @@ public class UserController extends BaseController{
     @Autowired
     UserService userService;
 
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
     //用户登录
 
     /*
@@ -51,8 +55,8 @@ public class UserController extends BaseController{
     @ResponseBody
     public CommonReturnType register(@RequestBody LoginUserInfom loginUserInfom) throws OptionException, UnsupportedEncodingException, NoSuchAlgorithmException {
         //验证手机号和对应的optCode相符合
-        String  inSessionOptCode = (String) this.httpServletRequest.getSession().getAttribute(loginUserInfom.getUseremail());//email
-
+//        String  inSessionOptCode = (String) this.httpServletRequest.getSession().getAttribute(loginUserInfom.getUseremail());//email
+        String  inSessionOptCode=stringRedisTemplate.opsForValue().get(loginUserInfom.getUseremail());
         //将两者 进行比对
         if(!com.alibaba.druid.util.StringUtils.equals(loginUserInfom.getCode(),inSessionOptCode)||com.alibaba.druid.util.StringUtils.equals(loginUserInfom.getCode(),"199810")){
             //不相等的时候

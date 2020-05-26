@@ -1,7 +1,9 @@
 package com.waectr.wetec.controller.viewobject;
 
+import java.io.Serializable;
+
 //用户前端交互层
-public class UserVO {
+public class UserVO implements Serializable {
 
     //用户ID
     private Integer userId;
